@@ -14,10 +14,6 @@ namespace Exchange.Test
         [Test]
         public void JsonReaderTest()
         {
-            JsonReader s = new JsonReader(new ExchangeRate());
-            s.Read("test.json");
-            ExchangeRate a = s.GetExchangeRate();
-            Assert.IsNotNull(a == null);
         }
     }
 }

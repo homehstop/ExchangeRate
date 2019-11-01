@@ -12,22 +12,17 @@ namespace Exchange.Private.Scripts
 {
     public class JsonReader
     {
-        private ExchangeRate exchangeRate { get; set; }
-
-        public JsonReader(ExchangeRate meta) => exchangeRate = meta;
-        
-
-        private JToken SetJsonObject(JObject jData, string objectName)
+        private static JToken SetJsonObject(JObject jData, string objectName)
         {
             return jData[objectName];
         }
 
-        private string GetJsonValue(JToken jToken, string name)
+        private static string GetJsonValue(JToken jToken, string name)
         {
             return jToken[name].ToString();
         }
 
-        public void Read(string file)
+        public static ExchangeRateData Read(string file, ExchangeRateData exchangeRateDataType)
         {
             using (StreamReader reader = new StreamReader(file))
             {
@@ -38,19 +33,15 @@ namespace Exchange.Private.Scripts
                 JToken jsonObject0 = SetJsonObject(jsonData, "Realtime Currency Exchange Rate");
 
 
-                exchangeRate.To = GetJsonValue(jsonObject0, "3. To_Currency Code");
-                exchangeRate.LastRefreshed = GetJsonValue(jsonObject0, "6. Last Refreshed");
-                exchangeRate.From = GetJsonValue(jsonObject0, "1. From_Currency Code");
-                exchangeRate.ExchangeRateString = GetJsonValue(jsonObject0, "5. Exchange Rate");
-                exchangeRate.BindPrice = GetJsonValue(jsonObject0, "8. Bid Price");
-                exchangeRate.AskPrice = GetJsonValue(jsonObject0, "9. Ask Price");
+                exchangeRateDataType.To = GetJsonValue(jsonObject0, "3. To_Currency Code");
+                exchangeRateDataType.LastRefreshed = GetJsonValue(jsonObject0, "6. Last Refreshed");
+                exchangeRateDataType.From = GetJsonValue(jsonObject0, "1. From_Currency Code");
+                exchangeRateDataType.ExchangeRateString = GetJsonValue(jsonObject0, "5. Exchange Rate");
+                exchangeRateDataType.BindPrice = GetJsonValue(jsonObject0, "8. Bid Price");
+                exchangeRateDataType.AskPrice = GetJsonValue(jsonObject0, "9. Ask Price");
+
+                return exchangeRateDataType;
             }
         }
-
-        public ExchangeRate GetExchangeRate()
-        {
-            return exchangeRate;
-        }
-
     }
 }

@@ -1,7 +1,27 @@
-﻿@model Exchange.Private.DataTypes.ExchangeRate
+﻿@model Exchange.Private.DataTypes.ExchangeDataList
 
 @{
     Layout = "_Layout";
 }
 
-Hello World
+<div>
+    <div id="ExchangeTable">
+        <table style="width: 75%">
+            <tr>
+                <th>Convert from</th>
+                <th>Convert to</th>
+                <th>Exchange rate</th>
+                <th>Bind price</th>
+                <th>Ask price</th>
+                <th>Last refreshed</th>
+            </tr>
+
+
+            @foreach (var i in Model.ExchangeRates)
+            {
+                @Html.Partial("ExchangeBox", i)
+            }
+
+        </table>
+    </div>
+</div>

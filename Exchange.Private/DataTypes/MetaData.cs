@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Exchange.Private.DataTypes
 {
 
-    public class ExchangeRate
+    public class ExchangeRateData
     {
         public string From { get; set; }
         public string To { get; set; }
