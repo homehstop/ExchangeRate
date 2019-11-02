@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Exchange.Private.DataTypes;
 using Exchange.Private.Scripts;
+using System.Collections.Generic;
 
 namespace Exchange.Test
 {
@@ -12,8 +13,11 @@ namespace Exchange.Test
         }
 
         [Test]
-        public void JsonReaderTest()
+        public void ReadJsonObject()
         {
+            List<ChartModel> test = new List<ChartModel>();
+            JsonReader.ChartJsonReader("test.json", test);
+            Assert.IsTrue(test != null);
         }
     }
 }

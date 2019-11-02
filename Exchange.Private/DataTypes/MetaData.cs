@@ -15,5 +15,7 @@ namespace Exchange.Private.DataTypes
         public string LastRefreshed { get; set; }
         public string BindPrice { get; set; }
         public string AskPrice { get; set; }
+
+         
     }
 }

@@ -11,15 +11,21 @@ namespace Exchange.Private
     class APITokens
     {
         public string token { get; set; }
+        public string chartToken { get; set; }
     }
 
     public class Api
     {
         private List<APITokens> tokens = new List<APITokens>()
         {
-            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=EUR&apikey=JIM07LC18T4I2AHC"},
-            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=UAH&apikey=JIM07LC18T4I2AHC"},
-            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=CHF&apikey=JIM07LC18T4I2AHC"},
+            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=EUR&apikey=JIM07LC18T4I2AHC",
+                           chartToken = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=USD&to_symbol=EUR&apikey=JIM07LC18T4I2AHC" },
+
+            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=UAH&apikey=JIM07LC18T4I2AHC",
+                           chartToken = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=USD&to_symbol=UAH&apikey=JIM07LC18T4I2AHC"},
+
+            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=CHF&apikey=JIM07LC18T4I2AHC",
+                            chartToken = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=USD&to_symbol=CHF&apikey=JIM07LC18T4I2AHC"},
         };
 
         public ExchangeDataList Init()
