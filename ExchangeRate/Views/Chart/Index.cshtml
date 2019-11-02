@@ -1,0 +1,55 @@
+﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" ></script>
+
+<div id="chartDiv">
+
+</div>
+
+<script type="text/javascript">
+
+      google.charts.load('current', {  
+        packages: ['corechart', 'bar']  
+      });  
+    google.charts.setOnLoadCallback(LoadData); 
+
+    function LoadData()
+    {
+        $.ajax({
+            url: 'ChartData',
+            dataType: "json",
+            type: "GET",
+
+            success: function (data) {
+                DrawChart(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+
+    function DrawChart(data)
+    {
+        var dataArray = [['Code', 'Year0', 'Year1', 'Year2', 'Year3']];
+
+        $.each(data, function (i, item)
+        {
+            dataArray.push([item.code, item.year0, item.year1, item.year2, item.year3]);
+        });
+
+        var data = google.visualization.arrayToDataTable(dataArray); 
+
+        var options =
+        {
+            title: 'Code',
+            chartArea: { width: '50%' },
+            colors: ['#b0120a', '#7b1fa2', '#ffab91', '#d95f02'],
+            hAxis: { title: 'Exchange', minValue: 0 },
+            vAxis: { title: 'Total rate'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chartDiv'));
+        chart.draw(data, options);
+        return false;
+    }
+
+</script>
