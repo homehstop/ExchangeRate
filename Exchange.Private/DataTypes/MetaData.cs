@@ -16,6 +16,6 @@ namespace Exchange.Private.DataTypes
         public string BindPrice { get; set; }
         public string AskPrice { get; set; }
 
-         
+        public List<ChartModel> ChartModels { get; set; }
     }
 }

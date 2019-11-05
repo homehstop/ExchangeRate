@@ -15,6 +15,8 @@ namespace ExchangeRate.Controllers
 
         public ViewResult Exchange(ExchangeDataList exchangeDataList)
         {
+            exchangeDataList = new ExchangeDataList();
+
             exchangeDataList =  Api.Init();
 
             return View(exchangeDataList);

@@ -7,9 +7,9 @@ namespace Exchange.Private.DataTypes
     public class ChartModel
     {
         public string Date { get; set; }
-        public string Open { get; set; }
-        public string High { get; set; }
-        public string Low { get; set; }
-        public string Close { get; set; }
+        public float Open { get; set; }
+        public float High { get; set; }
+        public float Low { get; set; }
+        public float Close { get; set; }
     }
 }

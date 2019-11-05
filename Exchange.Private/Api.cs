@@ -19,13 +19,13 @@ namespace Exchange.Private
         private List<APITokens> tokens = new List<APITokens>()
         {
             new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=EUR&apikey=JIM07LC18T4I2AHC",
-                           chartToken = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=USD&to_symbol=EUR&apikey=JIM07LC18T4I2AHC" },
+                           chartToken = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=EUR&apikey=JIM07LC18T4I2AHC" },
 
             new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=UAH&apikey=JIM07LC18T4I2AHC",
-                           chartToken = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=USD&to_symbol=UAH&apikey=JIM07LC18T4I2AHC"},
+                           chartToken = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=UAH&apikey=JIM07LC18T4I2AHC"},
 
-            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=CHF&apikey=JIM07LC18T4I2AHC",
-                            chartToken = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=USD&to_symbol=CHF&apikey=JIM07LC18T4I2AHC"},
+           // new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=CHF&apikey=JIM07LC18T4I2AHC",
+           //                chartToken = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=CHF&apikey=JIM07LC18T4I2AHC"},
         };
 
         public ExchangeDataList Init()
@@ -34,21 +34,32 @@ namespace Exchange.Private
             int z = 0;
             const string api = "alphavantage";
             const string type = ".json";
+
+            const string apiChart = "alphavantageMon";
+
             ExchangeRateData temp;
             ExchangeDataList temp0 = new ExchangeDataList();
+
             temp0.ExchangeRates = new List<ExchangeRateData>();
 
             foreach (APITokens i in tokens)
             {
                 temp = new ExchangeRateData();
-                DownloadScript.Download(i.token, api + z.ToString() + type);
+
+
+                //DownloadScript.Download(i.token, api + z.ToString() + type);
                 temp = JsonReader.Read(api + z.ToString() + type, temp);
+
+
+                //DownloadScript.Download(i.chartToken, apiChart + z.ToString() + type);
+                temp.ChartModels = JsonReader.ChartJsonReader(apiChart + z.ToString() + type, temp.ChartModels = new List<ChartModel>() );
 
                 z++;
                 
                 temp0.ExchangeRates.Add(temp);
                 temp = null;
             }
+
             return temp0;
         }
     }

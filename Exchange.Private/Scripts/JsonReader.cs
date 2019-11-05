@@ -29,34 +29,6 @@ namespace Exchange.Private.Scripts
             return null;
         }
 
-        public static void ReadJsonObjects()
-        {
-            using (StreamReader reader = new StreamReader("test.json"))
-            {
-                string jsonRaw = reader.ReadToEnd();
-                JObject jsonData = JObject.Parse(jsonRaw);
-
-                JToken jsonToke = jsonData["Time Series FX (Weekly)"];
-
-                var hd = (JObject)jsonToke;
-
-                
-
-                foreach (var i in hd)
-                {
-                    var key = i.Key;
-                    //var value = ((JObject)i.Value).Properties().First().Value.ToString();
-                    var value2 = ((JObject)i.Value).Properties().Values().ToArray();
-
-                    var value3 = value2[0].ToString();
-                    var value4 = value2[1].ToString();
-                    var value5 = value2[2].ToString();
-                    var value6 = value2[3].ToString();
-                }
-
-            }
-        }
-
         public static List<ChartModel> ChartJsonReader(string file, List<ChartModel> chartModelList)
         {
             using (StreamReader reader = new StreamReader(file))
@@ -65,11 +37,14 @@ namespace Exchange.Private.Scripts
 
                 JObject jsonData = JObject.Parse(jsonRaw);
 
-                JToken jsonObject = jsonData["Time Series FX (Weekly)"];
+                JToken jsonObject = jsonData["Time Series FX (Monthly)"];
 
                 var tokens = (JObject)jsonObject;
 
                 ChartModel temp;
+
+                
+
                 foreach (var i in tokens)
                 {
                     temp = new ChartModel();
@@ -77,11 +52,11 @@ namespace Exchange.Private.Scripts
                     var z = ((JObject)i.Value).Properties().Values().ToArray();
 
                     temp.Date = i.Key.ToString();
-                    temp.Open = z[0].ToString();
-                    temp.High = z[1].ToString();
-                    temp.Low = z[2].ToString();
-                    temp.Close = z[3].ToString();
-
+                    temp.Open =  StringParserToInt.Parse(z[0].ToString());
+                    temp.High =  StringParserToInt.Parse(z[1].ToString());
+                    temp.Low =   StringParserToInt.Parse(z[2].ToString());
+                    temp.Close = StringParserToInt.Parse(z[3].ToString());
+                                                             
                     chartModelList.Add(temp);
                     temp = null;
                 }
@@ -108,7 +83,7 @@ namespace Exchange.Private.Scripts
                 exchangeRateDataType.BindPrice = GetJsonValue(jsonObject0, "8. Bid Price");
                 exchangeRateDataType.AskPrice = GetJsonValue(jsonObject0, "9. Ask Price");
 
-
+                
 
                 return exchangeRateDataType;
             }
