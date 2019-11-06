@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Exchange.Private;
 using Exchange.Private.DataTypes;
 
+using ExchangeRate.Models;
+
 namespace ExchangeRate.Controllers
 {
     public class ExchangeController : Controller
@@ -19,7 +21,9 @@ namespace ExchangeRate.Controllers
 
             exchangeDataList =  Api.Init();
 
-            return View(exchangeDataList);
+            ChartDataModel.ChartData = exchangeDataList;
+
+            return View(ChartDataModel.ChartData);
         }
     }
 }

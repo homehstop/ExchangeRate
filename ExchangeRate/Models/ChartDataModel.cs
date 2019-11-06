@@ -9,6 +9,6 @@ namespace ExchangeRate.Models
 {
     public class ChartDataModel
     { 
-
+        public static ExchangeDataList ChartData { get; set; }
     }
 }

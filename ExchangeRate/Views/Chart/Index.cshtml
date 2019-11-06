@@ -6,9 +6,7 @@
 
 <script type="text/javascript">
 
-      google.charts.load('current', {  
-        packages: ['corechart', 'bar']  
-      });  
+      google.charts.load('current', { packages: ['line'] });  
     google.charts.setOnLoadCallback(LoadData); 
 
     function LoadData()
@@ -16,7 +14,7 @@
         $.ajax({
             url: 'ChartData',
             dataType: "json",
-            type: "GET",
+            type: "POST",
 
             success: function (data) {
                 DrawChart(data);
@@ -29,26 +27,26 @@
 
     function DrawChart(data)
     {
-        var dataArray = [['Open', 'High', 'Low', 'Close']];
-        var Date = 'Date';
+        var dataArray = [['Date', 'Open', 'High', 'Low', 'Close']];
 
         $.each(data, function (i, item)
         {
-            dataArray.push([item.open, item.high, item.low, item.close]);
+            dataArray.push([item.date, item.open, item.high, item.low, item.close]);
         });
 
-        var data = google.visualization.arrayToDataTable(dataArray); 
+        var data = google.visualization.arrayToDataTable(dataArray);
+
 
         var options =
         {
-            title: Date,
+            title: 'Date',
             chartArea: { width: '50%' },
             colors: ['#b0120a', '#7b1fa2', '#ffab91', '#d95f02'],
-            hAxis: { title: 'Exchange', minValue: 0 },
-            vAxis: { title: 'Total rate'}
+            hAxis: { title: 'Rate', minValueL: 0 },
+            yAxis: { title: 'Total rate'}
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chartDiv'));
+        var chart = new google.charts.Line(document.getElementById('chartDiv'));
         chart.draw(data, options);
         return false;
     }

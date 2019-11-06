@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
+using ExchangeRate.Models;
+
 using Exchange.Private.DataTypes;
 
 namespace ExchangeRate.Controllers
@@ -15,14 +17,15 @@ namespace ExchangeRate.Controllers
             return View();
         }
 
-        [HttpGet]
-        public JsonResult ChartData(ExchangeDataList exchangeDataList)
-        {
-            //var ChartDatas = ChartDataModel.GetChartDataModels();
+        [HttpPost]
+        public JsonResult ChartData()
+        { 
+            foreach(ExchangeRateData i in ChartDataModel.ChartData.ExchangeRates)
+            { 
+                return Json(i.ChartModels.ToArray());
+            }
 
-            
-            return Json(exchangeDataList.ExchangeRates);
+            return Json(404);
         }
-
     }
 }
