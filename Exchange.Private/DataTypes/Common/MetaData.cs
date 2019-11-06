@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Exchange.Private.DataTypes
 {
 
-    public class ExchangeRateData
+    public class MetaData
     {
         public string From { get; set; }
         public string To { get; set; }
@@ -15,7 +15,5 @@ namespace Exchange.Private.DataTypes
         public string LastRefreshed { get; set; }
         public string BindPrice { get; set; }
         public string AskPrice { get; set; }
-
-        public List<ChartModel> ChartModels { get; set; }
     }
 }

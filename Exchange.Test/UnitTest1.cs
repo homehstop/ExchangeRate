@@ -17,9 +17,6 @@ namespace Exchange.Test
         [Test]
         public void ApiTest()
         {
-            Api test = new Api();
-            ExchangeDataList s = new ExchangeDataList();
-            s = test.Init();
         }
     }
 }

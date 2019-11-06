@@ -20,4 +20,9 @@
     <ProjectReference Include="..\Exchange.Private\Exchange.Private.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

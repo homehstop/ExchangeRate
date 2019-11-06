@@ -1,4 +1,4 @@
-﻿@model Exchange.Private.DataTypes.ExchangeDataList
+﻿@model Exchange.Private.DataTypes.Token
 
 @{
     Layout = "_Layout";
@@ -17,7 +17,7 @@
             </tr>
 
 
-            @foreach (var i in Model.ExchangeRates)
+            @foreach (var i in Model.MetaDatas)
             {
                 @Html.Partial("ExchangeBox", i)
             }
