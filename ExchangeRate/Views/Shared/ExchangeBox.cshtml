@@ -1,8 +1,9 @@
-﻿@model Exchange.Private.DataTypes.MetaData
+﻿@model MetaData
 
 
+@using (@Html.BeginForm("ChartData", "Chart"))
+{
 
-<tr>
     <td>@Model.From</td>
     <td>@Model.To</td>
     <td>@Model.ExchangeRateString</td>
@@ -10,5 +11,5 @@
     <td>@Model.AskPrice</td>
 
     <td>@Model.LastRefreshed</td>
-    <td>@Html.ActionLink("Info", "Index", "Chart")</td>
-</tr>
+
+}

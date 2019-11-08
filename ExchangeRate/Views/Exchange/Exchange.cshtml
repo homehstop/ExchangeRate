@@ -1,4 +1,4 @@
-﻿@model Exchange.Private.DataTypes.Token
+﻿@model Token
 
 @{
     Layout = "_Layout";
@@ -16,10 +16,12 @@
                 <th>Last refreshed</th>
             </tr>
 
-
             @foreach (var i in Model.MetaDatas)
             {
-                @Html.Partial("ExchangeBox", i)
+                <tr>
+                    @Html.Partial("ExchangeBox", i)
+                    <td>@Html.RouteLink("Info", new { controller = "Chart", action = "Index", code = i.To })</td>
+                </tr>
             }
 
         </table>

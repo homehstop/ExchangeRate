@@ -41,19 +41,23 @@ namespace ExchangeRate
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            
+
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-
-
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Exchange}/{action=Exchange}/{CurrencyCode?}");
-            
+                    pattern: "{controller=Exchange}/{action=Exchange}");
+
+                endpoints.MapControllerRoute(
+                    name: "",
+                    pattern: "Chart/{code?}",
+                    defaults: new {controller = "Chart", action = "Index"}
+                    );
+
             });
         }
     }
