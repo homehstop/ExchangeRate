@@ -14,7 +14,6 @@ namespace ExchangeRate.Controllers
             Api.Init();
 
             token = Api.GetToken();
-
             return View(token);
         }
     }

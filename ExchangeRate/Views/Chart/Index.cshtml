@@ -1,7 +1,7 @@
 ﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" ></script>
 
-<div id="chartDiv">
-
+<div id="chartDiv" style="width: 1000px; height: 600px;" class="align-content-center ">
+    
 </div>
 
 <script type="text/javascript">
@@ -38,15 +38,17 @@
 
         var options =
         {
-            title: 'Date',
-            chartArea: { width: '50%' },
+            title: 'Currency',
+            chartArea: { width: '60%' },
             colors: ['#b0120a', '#7b1fa2', '#ffab91', '#d95f02'],
-            hAxis: { title: 'Rate', minValueL: 0 },
-            yAxis: { title: 'Total rate'}
+            hAxis: { minValueL: 0 },
+            yAxis: {},
+            backgroundColor: { fill: "#f8f9fc"}
+            
         };
 
         var chart = new google.charts.Line(document.getElementById('chartDiv'));
-        chart.draw(data, options);
+        chart.draw(data, google.charts.Line.convertOptions(options));
         return false;
     }
 

@@ -25,8 +25,9 @@ namespace ExchangeRate
             new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=UAH&apikey=JIM07LC18T4I2AHC",
                            chartToken = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=UAH&apikey=JIM07LC18T4I2AHC"},
 
-           // new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=CHF&apikey=JIM07LC18T4I2AHC",
-           //                chartToken = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=CHF&apikey=JIM07LC18T4I2AHC"},
+            new APITokens {token = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=CHF&apikey=JIM07LC18T4I2AHC",
+                           chartToken = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=CHF&apikey=JIM07LC18T4I2AHC"},
+
         };
 
         private static Token Token { get; set; }
@@ -39,14 +40,12 @@ namespace ExchangeRate
             const string chartFile = "alphavantageMon";
             const string fileType = ".json";
 
-            try
+            foreach (var i in tokensAPI)
             {
                 bool test;
-                foreach (var i in tokensAPI)
+                try
                 {
                     //TODO: finding which files don't exist and download them
-
-                    index++;
                     test = File.Exists(metaFile + index.ToString() + fileType);
 
                     if (test == false)
@@ -57,19 +56,17 @@ namespace ExchangeRate
                     if (test == false)
                         throw new FileNotFoundException();
 
-                }
-                index = 0;
-            }
-            catch (FileNotFoundException e)
-            {
-                foreach(var i in tokensAPI)
-                {
-                    new Thread(x => DownloadScript.Download(i.token,      metaFile  + index.ToString() + fileType));
-                    new Thread(x => DownloadScript.Download(i.chartToken, chartFile + index.ToString() + fileType));
 
                     index++;
                 }
-                index = 0;
+                catch (FileNotFoundException e)
+                {
+                    DownloadScript.Download(i.token, metaFile + index.ToString() + fileType);
+                    DownloadScript.Download(i.chartToken, chartFile + index.ToString() + fileType);
+                    //Alphavantage api limitation
+                    Thread.Sleep(TimeSpan.FromSeconds(30));
+                    index++;
+                }
             }
 
             Token token = new Token();
@@ -78,6 +75,7 @@ namespace ExchangeRate
 
             MetaData mTemp;
             ChartModelList mChart;
+            index = 0;
 
             foreach (var i in tokensAPI)
             { 

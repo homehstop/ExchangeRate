@@ -13,7 +13,6 @@ namespace ExchangeRate.Scripts
             using (var client = new WebClient())
             {
                 client.DownloadFile(url, name);
-                Thread.Sleep(TimeSpan.FromSeconds(15));
             }
         }
     }

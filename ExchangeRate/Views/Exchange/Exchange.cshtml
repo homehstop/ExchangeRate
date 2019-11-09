@@ -4,10 +4,12 @@
     Layout = "_Layout";
 }
 
-<div>
-    <div id="ExchangeTable">
-        <table style="width: 75%">
-            <tr>
+<div class="text-center">
+    <div style="overflow-x:auto;">
+
+        <table style="text-align: center; content: box ">
+
+            <tr id="firstColumn">
                 <th>Convert from</th>
                 <th>Convert to</th>
                 <th>Exchange rate</th>
@@ -20,10 +22,11 @@
             {
                 <tr>
                     @Html.Partial("ExchangeBox", i)
-                    <td>@Html.RouteLink("Info", new { controller = "Chart", action = "Index", code = i.To })</td>
                 </tr>
             }
 
         </table>
+
+
     </div>
 </div>

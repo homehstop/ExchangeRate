@@ -1,11 +1,10 @@
 ﻿@model MetaData
 
-<div>
 @using (@Html.BeginForm("ChartData", "Chart"))
 {
 
     <td>@Model.From</td>
-    <td>@Model.To</td>
+    <td>@Html.RouteLink(Model.To.ToString(), new { controller = "Chart", action = "Index", code =  Model.To})</td>
     <td>@Model.ExchangeRateString</td>
     <td>@Model.BindPrice</td>
     <td>@Model.AskPrice</td>
@@ -13,4 +12,3 @@
     <td>@Model.LastRefreshed</td>
 
 }
-</div>

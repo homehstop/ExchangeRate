@@ -39,11 +39,11 @@ html {
   border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 3px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 .30rem .75rem rgba(0, 0, 0, .10);
 }
 
 button.accept-policy {
@@ -69,3 +69,57 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+#firstColumn {
+    background: #fff;
+    display: flex;
+    border-radius: 8px;
+    border: 2px solid #dfe1e5;
+    box-shadow: none;
+    height: 39px;
+    width: 1038px;
+    border-radius: 24px;
+    z-index: 3;
+    height: 44px;
+    margin: 10px auto;
+}
+
+tr {
+    background: #fff;
+    display: flex;
+    border-radius: 8px;
+    border: 1px solid #dfe1e5;
+    box-shadow: none;
+    height: 39px;
+    width: 1038px;
+    border-radius: 24px;
+    z-index: 3;
+    height: 44px;
+    margin: 8px auto;
+
+}
+
+th {
+    width: 200px;
+    padding: 10px;
+    margin: 0;
+}
+
+td {
+    width: 320px;
+    padding: 10px;
+    margin: 0;
+}
+
+#mainContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info {
+    border: 5px, solid #cfbebe;
+    margin: 10px;   
+}
+
