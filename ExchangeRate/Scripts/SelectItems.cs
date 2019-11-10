@@ -8,7 +8,7 @@ namespace ExchangeRate.Scripts
 {
     public class SelectItems
     {
-        public static List<ChartModel> Get(List<ChartModelList> chartModelLists, string code)
+        public static List<ChartModel> Get(IEnumerable<ChartModelList> chartModelLists, string code)
         {
             List<ChartModel> modelList = new List<ChartModel>();
 

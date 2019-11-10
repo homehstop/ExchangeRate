@@ -32,6 +32,9 @@ namespace ExchangeRate
 
         private static Token Token { get; set; }
 
+        private static IList<MetaData> MetaDatas = new List<MetaData>();
+        private static IList<ChartModelList> ChartModelLists = new List<ChartModelList>();
+
         public static void Init()
         {
             int index = 0;
@@ -68,14 +71,14 @@ namespace ExchangeRate
                     index++;
                 }
             }
-
-            Token token = new Token();
-            token.MetaDatas = new List<MetaData>();
-            token.ChartModelLists = new List<ChartModelList>();
+            
 
             MetaData mTemp;
             ChartModelList mChart;
             index = 0;
+
+
+
 
             foreach (var i in tokensAPI)
             { 
@@ -88,17 +91,22 @@ namespace ExchangeRate
 
                 index++;
 
-                token.MetaDatas.Add(mTemp);
-                token.ChartModelLists.Add(mChart);
+
+                MetaDatas.Add(mTemp);
+                ChartModelLists.Add(mChart);
+
             }
 
-            Token = token;
         }
 
-        public static Token GetToken()
+        public static IList<MetaData> GetMetaData()
         {
-            return Token;
+            return MetaDatas;
         }
 
+        public static IList<ChartModelList> GetChartModelLists()
+        {
+            return ChartModelLists;
+        }
     }
 }

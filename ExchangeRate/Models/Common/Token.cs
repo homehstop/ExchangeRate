@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ExchangeRate.Models.Common
 {
-    public  class Token
+    public  class Token : IToken
     {
-        public List<MetaData> MetaDatas { set; get; }
-        public List<ChartModelList> ChartModelLists { get; set; }
+        public IEnumerable<MetaData> MetaDatas => Api.GetMetaData();
+        public IEnumerable<ChartModelList> ChartModelLists => Api.GetChartModelLists();
     }
 }

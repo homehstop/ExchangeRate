@@ -4,17 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ExchangeRate.Models.Common;
+using ExchangeRate.Models;
+
 
 namespace ExchangeRate.Controllers
 {
     public class ExchangeController : Controller
     {
-        public ViewResult Exchange(Token token)
-        {
-            Api.Init();
+        public IToken repo;
+        
+        public ExchangeController(IToken token) => repo = token;
 
-            token = Api.GetToken();
-            return View(token);
+        public ViewResult Exchange()
+        { 
+            return View(repo);
         }
     }
 }
