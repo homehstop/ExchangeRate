@@ -9,6 +9,5 @@ namespace ExchangeRate.Models
     public interface IToken
     {
          IEnumerable<MetaData> MetaDatas { get; }
-         IEnumerable<ChartModelList> ChartModelLists { get; }
     }
 }

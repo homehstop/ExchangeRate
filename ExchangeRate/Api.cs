@@ -37,7 +37,7 @@ namespace ExchangeRate
 
         public static void Init()
         {
-            int index = 0;
+            int index = 1;
 
             const string metaFile = "alphavantage";
             const string chartFile = "alphavantageMon";
@@ -75,7 +75,7 @@ namespace ExchangeRate
 
             MetaData mTemp;
             ChartModelList mChart;
-            index = 0;
+            index = 1;
 
 
 
@@ -86,11 +86,10 @@ namespace ExchangeRate
                 mChart = new ChartModelList();
                 mChart.ChartModels = new List<ChartModel>();
 
-                JsonReader.Read(metaFile + index.ToString() + fileType, mTemp);
+                JsonReader.Read(metaFile + index.ToString() + fileType, mTemp, index);
                 JsonReader.ChartJsonReader(chartFile + index.ToString() + fileType, mChart.ChartModels);
 
                 index++;
-
 
                 MetaDatas.Add(mTemp);
                 ChartModelLists.Add(mChart);

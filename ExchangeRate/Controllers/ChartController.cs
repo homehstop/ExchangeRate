@@ -19,9 +19,9 @@ namespace ExchangeRate.Controllers
         public ViewResult Index(string code)
         {
 
-            var i = SelectItems.Get(repo.ChartModelLists, code);
-
-            temp = i;
+            //var i = SelectItems.Get(repo.ChartModelLists, code);
+            //
+            //temp = i;
 
             return View();
         }

@@ -66,7 +66,7 @@ namespace ExchangeRate.Scripts
             }
         }
 
-        public static MetaData Read(string file, MetaData metaData)
+        public static MetaData Read(string file, MetaData metaData, int id)
         {
             using (StreamReader reader = new StreamReader(file))
             {
@@ -76,10 +76,10 @@ namespace ExchangeRate.Scripts
 
                 JToken jsonObject0 = SetJsonObject(jsonData, "Realtime Currency Exchange Rate");
 
-
-                metaData.To = GetJsonValue(jsonObject0, "3. To_Currency Code");
+                metaData.MetaDataId = id;
+                metaData.ToCurrency = GetJsonValue(jsonObject0, "3. To_Currency Code");
                 metaData.LastRefreshed = GetJsonValue(jsonObject0, "6. Last Refreshed");
-                metaData.From = GetJsonValue(jsonObject0, "1. From_Currency Code");
+                metaData.Currency= GetJsonValue(jsonObject0, "1. From_Currency Code");
                 metaData.ExchangeRateString = GetJsonValue(jsonObject0, "5. Exchange Rate");
                 metaData.BindPrice = GetJsonValue(jsonObject0, "8. Bid Price");
                 metaData.AskPrice = GetJsonValue(jsonObject0, "9. Ask Price");

@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ExchangeRate.Models;
 using ExchangeRate.Models.Common;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using ExchangeRate.Models.Entities;
 
 namespace ExchangeRate
 {
@@ -26,7 +29,12 @@ namespace ExchangeRate
         public void ConfigureServices(IServiceCollection services)
         {
             Api.Init();
-            services.AddSingleton<IToken, Token>();
+
+            services.AddDbContext<TokenDbContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:Database"])
+            );
+
+            services.AddTransient<IToken, EFToken>();
             services.AddControllersWithViews();
         }
 
