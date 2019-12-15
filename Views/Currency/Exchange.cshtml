@@ -1,6 +1,4 @@
-﻿@model IToken
-
-@{
+﻿@{
     Layout = "_Layout";
 }
 
@@ -18,12 +16,6 @@
                 <th>Last refreshed</th>
             </tr>
 
-            @foreach (var i in Model.MetaDatas)
-            {
-                <tr>
-                    @Html.Partial("ExchangeBox", i)
-                </tr>
-            }
 
         </table>
 

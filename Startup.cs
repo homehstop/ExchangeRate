@@ -9,10 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ExchangeRate.Models;
-using ExchangeRate.Models.Common;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using ExchangeRate.Models.Entities;
 
 namespace ExchangeRate
 {
@@ -25,20 +22,11 @@ namespace ExchangeRate
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Api.Init();
-
-            services.AddDbContext<TokenDbContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:Database"])
-            );
-
-            services.AddTransient<IToken, EFToken>();
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,29 +35,19 @@ namespace ExchangeRate
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Exchange}/{action=Exchange}");
-
-                endpoints.MapControllerRoute(
-                    name: "",
-                    pattern: "Chart/{code?}",
-                    defaults: new {controller = "Chart", action = "Index"}
-                    );
-
+                    pattern: "{controller=Currency}/{action=Index}");
             });
         }
     }
