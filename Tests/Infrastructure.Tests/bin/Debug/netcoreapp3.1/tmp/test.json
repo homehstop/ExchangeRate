@@ -3,15 +3,15 @@
         "1. Information": "Forex Monthly Prices (open, high, low, close)",
         "2. From Symbol": "USD",
         "3. To Symbol": "EUR",
-        "4. Last Refreshed": "2020-01-01 21:50:00",
+        "4. Last Refreshed": "2020-01-02 18:50:00",
         "5. Time Zone": "UTC"
     },
     "Time Series FX (Monthly)": {
-        "2020-01-01": {
+        "2020-01-02": {
             "1. open": "0.8916",
-            "2. high": "0.8920",
+            "2. high": "0.8955",
             "3. low": "0.8887",
-            "4. close": "0.8918"
+            "4. close": "0.8950"
         },
         "2019-12-31": {
             "1. open": "0.9072",

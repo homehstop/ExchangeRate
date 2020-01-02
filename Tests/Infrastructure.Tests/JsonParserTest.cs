@@ -14,9 +14,7 @@ namespace Infrastructure.Tests
         public void Test_Json_Parser()
         {
             var par = JsonParser.Create();
-            par.Parse("tmp/test.json", Api.EntityType.Monthly);
-
-            
+            var i =  par.Parse("tmp/test.json", Api.EntityType.Monthly);
 
             Assert.Pass();
         }
