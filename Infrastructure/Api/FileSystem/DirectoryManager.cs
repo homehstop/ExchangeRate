@@ -11,9 +11,12 @@ namespace Infrastructure.Api.FileSystem
         ///
         /// </summary>
         /// <param name="DirectoryPath"> Directory.GetCurrentDirectory() </param>
-        public DirectoryManager(string DirectoryPath)
+        DirectoryManager(string DirectoryPath)
         {
-            Directory.SetCurrentDirectory(DirectoryPath);
+            if (Directory.Exists(DirectoryPath))
+                Directory.SetCurrentDirectory(DirectoryPath);
+            else
+                CreateDirectory(DirectoryPath);
         }
         
         public void SetDirectoryPath(string DirectoryPath)
@@ -34,6 +37,11 @@ namespace Infrastructure.Api.FileSystem
         {
             var files = Directory.EnumerateFiles(Directory.GetCurrentDirectory());
             return files;
+        }
+
+        public static DirectoryManager Create(string DirectoryPath)
+        {
+            return new DirectoryManager(DirectoryPath);
         }
     }
 }

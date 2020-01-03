@@ -12,7 +12,7 @@ namespace Infrastructure.Tests
         {
             try
             {
-                DirectoryManager dm = new DirectoryManager(Directory.GetCurrentDirectory());
+                DirectoryManager dm = DirectoryManager.Create(Directory.GetCurrentDirectory());
                 dm.CreateDirectory("tmp");
             }
             catch (Exception e)
