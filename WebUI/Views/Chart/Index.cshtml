@@ -1,0 +1,55 @@
+﻿<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" ></script>
+
+<div id="chartDiv" style="width: 1000px; height: 600px;" class="align-content-center ">
+    
+</div>
+
+<script type="text/javascript">
+
+      google.charts.load('current', { packages: ['line'] });  
+    google.charts.setOnLoadCallback(LoadData); 
+
+    function LoadData()
+    {
+        $.ajax({
+            url: 'ChartData',
+            dataType: "json",
+            type: "POST",
+
+            success: function (data) {
+                DrawChart(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function DrawChart(data)
+    {
+        var dataArray = [['Date', 'Open', 'High', 'Low', 'Close']];
+
+        $.each(data, function (i, item)
+        {
+            dataArray.push([item.date, item.open, item.high, item.low, item.close]);
+        });
+
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+
+        var options =
+        {
+            title: 'Currency',
+            chartArea: { width: '60%' },
+            colors: ['#b0120a', '#7b1fa2', '#ffab91', '#d95f02'],
+            hAxis: { minValueL: 0 },
+            yAxis: {},
+            backgroundColor: { fill: "#f8f9fc"}
+            
+        };
+
+        var chart = new google.charts.Line(document.getElementById('chartDiv'));
+        chart.draw(data, google.charts.Line.convertOptions(options));
+        return false;
+    }
+
+</script>

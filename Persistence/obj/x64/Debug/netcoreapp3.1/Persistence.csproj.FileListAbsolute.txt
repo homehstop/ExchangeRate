@@ -1,0 +1,8 @@
+C:\Users\user\source\repos\ExchangeRate\Persistence\obj\x64\Debug\netcoreapp3.1\Persistence.csprojAssemblyReference.cache
+C:\Users\user\source\repos\ExchangeRate\Persistence\obj\x64\Debug\netcoreapp3.1\Persistence.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\ExchangeRate\Persistence\obj\x64\Debug\netcoreapp3.1\Persistence.AssemblyInfo.cs
+C:\Users\user\source\repos\ExchangeRate\Persistence\bin\x64\Debug\netcoreapp3.1\Persistence.deps.json
+C:\Users\user\source\repos\ExchangeRate\Persistence\bin\x64\Debug\netcoreapp3.1\Persistence.dll
+C:\Users\user\source\repos\ExchangeRate\Persistence\bin\x64\Debug\netcoreapp3.1\Persistence.pdb
+C:\Users\user\source\repos\ExchangeRate\Persistence\obj\x64\Debug\netcoreapp3.1\Persistence.dll
+C:\Users\user\source\repos\ExchangeRate\Persistence\obj\x64\Debug\netcoreapp3.1\Persistence.pdb
