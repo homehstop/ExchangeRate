@@ -14,7 +14,6 @@ namespace Persistence.Configuration
             builder.Property(e => e.BidPrice).HasMaxLength(40);
             builder.Property(e => e.AskPrice).HasMaxLength(40);
             builder.Property(e => e.LastRefreshed).HasMaxLength(25);
-            builder.Property(e => e.ApiUrl).HasMaxLength(200);
         }
     }
 }

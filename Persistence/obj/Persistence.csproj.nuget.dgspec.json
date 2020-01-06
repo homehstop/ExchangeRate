@@ -56,14 +56,14 @@
         }
       }
     },
-    "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\user\\source\\repos\\ExchangeRate\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\Persistence.csproj",
-        "projectName": "Persistence",
-        "projectPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\obj\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -94,6 +94,75 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\Persistence.csproj",
+        "projectName": "Persistence",
+        "projectPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\Persistence.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\user\\source\\repos\\ExchangeRate\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\user\\source\\repos\\ExchangeRate\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\user\\source\\repos\\ExchangeRate\\Infrastructure\\Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.0, )"

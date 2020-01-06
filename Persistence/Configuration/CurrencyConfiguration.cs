@@ -19,6 +19,11 @@ namespace Persistence.Configuration
                 .WithMany(e => e.Currency)
                 .HasForeignKey(e => e.CurrencyRateId)
                 .HasConstraintName("FK_Currency_CurrencyRate");
+
+            builder.HasOne(e => e.CurrencyMonthly)
+                .WithMany(e => e.Currency)
+                .HasForeignKey(e => e.CurrencyMonthlyId)
+                .HasConstraintName("FK_Currency_CurrencyMonthly");
         }
     }
 }

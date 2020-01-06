@@ -12,12 +12,6 @@ namespace Persistence.Configuration
                 .IsClustered(false);
 
             builder.Property(e => e.LastRefreshed).HasMaxLength(25);
-            builder.Property(e => e.MonthlyApiUrl).HasMaxLength(200);
-
-            builder.HasOne(e => e.Currency)
-                .WithMany(e => e.CurrencyMonthly)
-                .HasForeignKey(e => e.CurrencyId)
-                .HasConstraintName("FK_CurrencyMontly_Currency");
         }
     }
 }

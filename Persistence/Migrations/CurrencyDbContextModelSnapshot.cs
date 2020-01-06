@@ -29,6 +29,9 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
+                    b.Property<int>("CurrencyMonthlyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CurrencyName")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
@@ -38,6 +41,8 @@ namespace Persistence.Migrations
 
                     b.HasKey("CurrencyId")
                         .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("CurrencyMonthlyId");
 
                     b.HasIndex("CurrencyRateId");
 
@@ -51,21 +56,12 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CurrencyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("LastRefreshed")
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
 
-                    b.Property<string>("MonthlyApiUrl")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
                     b.HasKey("CurrencyMonthlyId")
                         .HasAnnotation("SqlServer:Clustered", false);
-
-                    b.HasIndex("CurrencyId");
 
                     b.ToTable("CurrencyMonthlies");
                 });
@@ -76,10 +72,6 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApiUrl")
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
 
                     b.Property<float>("AskPrice")
                         .HasColumnType("real")
@@ -107,6 +99,10 @@ namespace Persistence.Migrations
                     b.Property<int>("MonthlyId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Published")
+                        .HasColumnType("nvarchar(25)")
+                        .HasMaxLength(25);
+
                     b.Property<float>("Close")
                         .HasColumnType("real")
                         .HasMaxLength(40);
@@ -123,11 +119,7 @@ namespace Persistence.Migrations
                         .HasColumnType("real")
                         .HasMaxLength(40);
 
-                    b.Property<string>("Published")
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
-
-                    b.HasKey("MonthlyId")
+                    b.HasKey("MonthlyId", "Published")
                         .HasAnnotation("SqlServer:Clustered", false);
 
                     b.ToTable("Monthlies");
@@ -135,20 +127,17 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Currency", b =>
                 {
+                    b.HasOne("Domain.Entities.CurrencyMonthly", "CurrencyMonthly")
+                        .WithMany("Currency")
+                        .HasForeignKey("CurrencyMonthlyId")
+                        .HasConstraintName("FK_Currency_CurrencyMonthly")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.CurrencyRate", "CurrencyRate")
                         .WithMany("Currency")
                         .HasForeignKey("CurrencyRateId")
                         .HasConstraintName("FK_Currency_CurrencyRate")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Entities.CurrencyMonthly", b =>
-                {
-                    b.HasOne("Domain.Entities.Currency", "Currency")
-                        .WithMany("CurrencyMonthly")
-                        .HasForeignKey("CurrencyId")
-                        .HasConstraintName("FK_CurrencyMontly_Currency")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

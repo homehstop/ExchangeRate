@@ -8,7 +8,7 @@ namespace Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Monthly> builder)
         {
-            builder.HasKey(e => new { e.MonthlyId })
+            builder.HasKey(e => new { e.MonthlyId, e.Published})
                 .IsClustered(false);
 
             builder.Property(e => e.Published).HasMaxLength(25);

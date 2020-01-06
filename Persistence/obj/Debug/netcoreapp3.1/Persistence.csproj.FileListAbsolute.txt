@@ -11,3 +11,5 @@ C:\Users\user\source\repos\ExchangeRate\Persistence\obj\Debug\netcoreapp3.1\Pers
 C:\Users\user\source\repos\ExchangeRate\Persistence\obj\Debug\netcoreapp3.1\Persistence.pdb
 C:\Users\user\source\repos\ExchangeRate\Persistence\bin\Debug\netcoreapp3.1\Persistence.runtimeconfig.json
 C:\Users\user\source\repos\ExchangeRate\Persistence\bin\Debug\netcoreapp3.1\Persistence.runtimeconfig.dev.json
+C:\Users\user\source\repos\ExchangeRate\Persistence\bin\Debug\netcoreapp3.1\Infrastructure.dll
+C:\Users\user\source\repos\ExchangeRate\Persistence\bin\Debug\netcoreapp3.1\Infrastructure.pdb
