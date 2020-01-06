@@ -7,6 +7,7 @@ namespace Infrastructure.Api.JsonObjects
 {
     public class RealtimeCurrency : ICurrencyApi
     {
+        //TODO: refactor
         [JsonProperty(PropertyName = "Realtime Currency Exchange Rate")]
         public RealtimeCurrencyRate RealtimeCurrencyRate;
     }
@@ -14,24 +15,24 @@ namespace Infrastructure.Api.JsonObjects
     public class RealtimeCurrencyRate
     {
         [JsonProperty(PropertyName = "1. From_Currency Code")]
-        string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         [JsonProperty(PropertyName = "2. From_Currency Name")]
-        string CurrencyName { get; set; }
+        public string CurrencyName { get; set; }
 
         [JsonProperty(PropertyName = "3. To_Currency Code")]
-        string ToCurrencyCode { get; set; }
+        public string ToCurrencyCode { get; set; }
 
         [JsonProperty(PropertyName = "5. Exchange Rate")]
-        float ExchangeRate { get; set; }
+        public float ExchangeRate { get; set; }
 
         [JsonProperty(PropertyName = "8. Bid Price")]
-        float BidPrice { get; set; }
+        public float BidPrice { get; set; }
 
         [JsonProperty(PropertyName = "9. Ask Price")]
-        float AskPrice { get; set; }
+        public float AskPrice { get; set; }
 
         [JsonProperty(PropertyName = "6. Last Refreshed")]
-        string LastRefreshed { get; set; }
+        public string LastRefreshed { get; set; }
     }
 }

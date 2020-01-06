@@ -6,6 +6,8 @@ using Infrastructure.Api.FileSystem;
 using Infrastructure.Api.JsonObjects;
 using Infrastructure.Api.Parser;
 using Infrastructure.Api.Scripts;
+using Domain.Entities;
+
 
 namespace Infrastructure.Api
 {
@@ -22,12 +24,13 @@ namespace Infrastructure.Api
 
         List<APIToken> tokens { get; set; }
 
-        public List<RealtimeCurrency> GetRealtimeCurrencies = new List<RealtimeCurrency>();
-        public List<RealtimeMonthlyCurrencyRate> GetRealtimeMonthlyCurrencyRates = new List<RealtimeMonthlyCurrencyRate>();
         public static Api Create()
         {
             return new Api();
         }
+
+        public List<RealtimeCurrency> GetRealtimeCurrencies = new List<RealtimeCurrency>();
+        public List<RealtimeMonthlyCurrencyRate> GetRealtimeMonthlyCurrencyRates = new List<RealtimeMonthlyCurrencyRate>();
 
         public void Init()
         {
@@ -46,6 +49,7 @@ namespace Infrastructure.Api
                 counter++;
                 try
                 {
+                    //TODO: create function for it 
                     flag = File.Exists(fileName + counter.ToString() + ".json");
                     if (flag == false)
                         throw new FileNotFoundException();
@@ -56,6 +60,7 @@ namespace Infrastructure.Api
                 }
                 catch (FileNotFoundException e)
                 {
+                    Console.WriteLine("{0}.\n Downloading ", e.ToString());
                     downloader.Get(i.CurrencyToken, fileName + counter.ToString() + ".json");
                     downloader.Get(i.MonthlyToken, fileName + "Monthly" + counter.ToString() + ".json");
                 }

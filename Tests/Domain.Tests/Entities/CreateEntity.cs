@@ -21,7 +21,6 @@ namespace Domain.Tests.Entities
             CurrencyMonthly currencyMonthly = new CurrencyMonthly
             {
                 LastRefreshed = DateTime.Now.ToString(),
-                MonthlyApiUrl = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=USD&to_symbol=EUR&apikey=JIM07LC18T4I2AHC",
                 Monthly = new List<Monthly> { monthly }
             };
 
@@ -31,7 +30,6 @@ namespace Domain.Tests.Entities
                 BidPrice = 1.02f,
                 AskPrice = 2.03f,
                 LastRefreshed = DateTime.Now.ToString(),
-                ApiUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=EUR&apikey=JIM07LC18T4I2AHC",
             };
 
             Currency currency = new Currency
@@ -39,7 +37,7 @@ namespace Domain.Tests.Entities
                 CurrencyName = "United States Dollar",
                 CurrencyCode = "USD",
                 CurrencyRate = currencyRate,
-                CurrencyMonthly = new List<CurrencyMonthly> { currencyMonthly }
+                CurrencyMonthly =  currencyMonthly
             };
 
             return currency;

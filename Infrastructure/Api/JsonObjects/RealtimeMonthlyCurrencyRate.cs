@@ -21,12 +21,12 @@ namespace Infrastructure.Api.JsonObjects
     public class MonthlyMetaData
     {
         [JsonProperty(PropertyName = "2. From Symbol")]
-        string From { get; set; }
+        public string From { get; set; }
 
         [JsonProperty(PropertyName = "3. To Symbol")]
-        string To { get; set; }
+        public string To { get; set; }
 
         [JsonProperty(PropertyName = "4. Last Refreshed")]
-        string LastRefreshed { get; set; }
+        public string LastRefreshed { get; set; }
     }
 }

@@ -18,7 +18,8 @@ namespace Infrastructure.Api.Parser
             {
                 string json = reader.ReadToEnd();
 
-                return Filter(json, entityType);
+                var output = Filter(json, entityType);
+                return output;
             }
         }
 
@@ -37,11 +38,10 @@ namespace Infrastructure.Api.Parser
                     var Object = JsonConvert
                             .DeserializeObject<RealtimeMonthlyCurrencyRate>(json);
                     Object.CurrencySeries = CurrencySeriesFilter(json);
-
                     return Object;
                 }
                 default:
-                    throw new Exception("Invalid parser entity type");
+                    throw new Exception("Invalid parser entity type.");
             }
         }
 
@@ -54,7 +54,7 @@ namespace Infrastructure.Api.Parser
             }
             else
             {
-                throw new Exception("");
+                throw new Exception("Can not convert to float.");
             }
         }
 

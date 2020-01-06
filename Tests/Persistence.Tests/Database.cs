@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Domain.Tests.Entities;
+using Persistence.Seeding;
 using NUnit.Framework;
 
 namespace Persistence.Tests
@@ -8,6 +9,10 @@ namespace Persistence.Tests
     {
         [SetUp]
         public void Setup()
+        {
+        }
+
+        public void Seed_data()
         {
         }
 
