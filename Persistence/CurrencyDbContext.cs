@@ -5,8 +5,12 @@ namespace Persistence
 {
     public class CurrencyDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-              => optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=ExchangeDB;");
+        public CurrencyDbContext(DbContextOptions options)
+            : base(options)
+        { }
+
+     //   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+     //         => optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=ExchangeDB;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
               => modelBuilder.ApplyConfigurationsFromAssembly(typeof(CurrencyDbContext).Assembly);

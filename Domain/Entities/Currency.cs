@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Domain.Entities
 {
@@ -12,7 +13,9 @@ namespace Domain.Entities
 
         public string CurrencyName { get; set; }
         public string CurrencyCode { get; set; }
+        [JsonIgnore]
         public CurrencyRate CurrencyRate { get; set; }
+        [JsonIgnore]
         public CurrencyMonthly CurrencyMonthly { get; set; }
     }
 }
