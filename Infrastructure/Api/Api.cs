@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Threading;
 using Infrastructure.Api.FileSystem;
 using Infrastructure.Api.JsonObjects;
 using Infrastructure.Api.Parser;
@@ -62,10 +63,11 @@ namespace Infrastructure.Api
                 {
                     Console.WriteLine("{0}.\n Downloading ", e.ToString());
                     downloader.Get(i.CurrencyToken, fileName + counter.ToString() + ".json");
+                    //Alphavantage 5 api request limitation
+                    Thread.Sleep(15000);
                     downloader.Get(i.MonthlyToken, fileName + "Monthly" + counter.ToString() + ".json");
                 }
-
-
+                
                 var z = (RealtimeCurrency)
                         parser.Parse(fileName + counter.ToString() + ".json", EntityType.Daily);
                 GetRealtimeCurrencies.Add(z);
