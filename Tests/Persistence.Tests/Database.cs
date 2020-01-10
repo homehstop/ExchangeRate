@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Domain.Tests.Entities;
 using Persistence.Seeding;
 using NUnit.Framework;
 

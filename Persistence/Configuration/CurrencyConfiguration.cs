@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Domain.Entities;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Persistence.Configuration
 {
@@ -8,22 +9,15 @@ namespace Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Currency> builder)
         {
-            builder.HasKey(e => new { e.CurrencyId })
-                .IsClustered(false);
-
-            builder.Property(e => e.CurrencyName).HasMaxLength(50);
-            builder.Property(e => e.CurrencyCode).HasMaxLength(15);
+            builder.HasKey(e => new {e.Id});
             
+            builder.Property(e => e.ToCurrencyCode).HasMaxLength(15);
+            builder.Property(e => e.FromCurrencyCode).HasMaxLength(15);
+            builder.Property(e => e.LastRefreshed).HasMaxLength(25);
+            builder.Property(e => e.AskPrice).HasMaxLength(40);
+            builder.Property(e => e.BidPrice).HasMaxLength(40);
 
-            builder.HasOne(e => e.CurrencyRate)
-                .WithMany(e => e.Currency)
-                .HasForeignKey(e => e.CurrencyRateId)
-                .HasConstraintName("FK_Currency_CurrencyRate");
-
-            builder.HasOne(e => e.CurrencyMonthly)
-                .WithMany(e => e.Currency)
-                .HasForeignKey(e => e.CurrencyMonthlyId)
-                .HasConstraintName("FK_Currency_CurrencyMonthly");
+            builder.Ignore(e => e.CurrencyMonthly);
         }
     }
 }

@@ -9,6 +9,7 @@ using Domain.Entities;
 using Persistence;
 using Newtonsoft.Json;
 using System.IO;
+using MediatR;
 
 namespace WebUI.Controllers
 {
@@ -16,22 +17,20 @@ namespace WebUI.Controllers
     [ApiController]
     public class CurrencyController : Controller
     {
-        private readonly CurrencyDbContext context;
+        private readonly CurrencyDbContext _context;
 
-        public CurrencyController(CurrencyDbContext context) => this.context = context;
+        public CurrencyController(CurrencyDbContext context) => _context = context;
 
         [HttpGet]
-        public IEnumerable<Currency> Currency()
+        public string Currency()
         {
-            return context.Currencies.ToArray();
+           return "Hello world";
         }
-
+        
         [HttpGet("{id}")]
         public Currency CurrencyById(int id)
         {
-            var foo = context.Currencies.Find(id);
-
-            return foo;
+            return _context.Currencies.Find(id);
         }
     }
 }

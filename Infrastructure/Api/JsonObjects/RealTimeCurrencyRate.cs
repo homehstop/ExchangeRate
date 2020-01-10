@@ -15,7 +15,7 @@ namespace Infrastructure.Api.JsonObjects
     public class RealtimeCurrencyRate
     {
         [JsonProperty(PropertyName = "1. From_Currency Code")]
-        public string CurrencyCode { get; set; }
+        public string FromCurrencyCode { get; set; }
 
         [JsonProperty(PropertyName = "2. From_Currency Name")]
         public string CurrencyName { get; set; }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MediatR;
 using Persistence;
 using Persistence.Seeding;
 using Microsoft.EntityFrameworkCore;
@@ -17,8 +18,6 @@ namespace ExchangeRate
 {
     public class Startup
     {
-        public const string SQLITE_CONNECTION = "Filename=ExchangeDB";
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,10 +27,8 @@ namespace ExchangeRate
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddSingleton<CurrencyDbContext>();
-            services.AddDbContext<CurrencyDbContext>(options =>
-                options.UseSqlite(SQLITE_CONNECTION)
-            );
+            services.AddSingleton<CurrencyDbContext>();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddControllersWithViews();
         }
 

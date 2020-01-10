@@ -7,15 +7,14 @@ namespace Domain.Entities
 {
     public class Currency
     {
-        public int CurrencyId { get; set; }
-        public int CurrencyRateId { get; set; }
-        public int CurrencyMonthlyId { get; set; }
-
-        public string CurrencyName { get; set; }
-        public string CurrencyCode { get; set; }
+        public int Id { get; set; }
+        public float BidPrice { get; set; }
+        public float AskPrice { get; set; }
+        public string LastRefreshed { get; set; }
+        public string ToCurrencyCode { get; set; }
+        public string FromCurrencyCode { get; set; }
+        
         [JsonIgnore]
-        public CurrencyRate CurrencyRate { get; set; }
-        [JsonIgnore]
-        public CurrencyMonthly CurrencyMonthly { get; set; }
+        public List<CurrencyMonthly> CurrencyMonthly { get; set; }
     }
 }

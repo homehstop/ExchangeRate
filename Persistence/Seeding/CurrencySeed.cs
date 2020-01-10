@@ -39,36 +39,29 @@ namespace Persistence.Seeding
 
             foreach (var i in currList)
             {
-                string currCode = i.RealtimeCurrencyRate.CurrencyCode;
+                string currCode = i.RealtimeCurrencyRate.FromCurrencyCode;
                 string toCurrCode = i.RealtimeCurrencyRate.ToCurrencyCode;
 
-                CurrencyMonthly currencyMonthly = new CurrencyMonthly();
-                currencyMonthly = MigrateMonthly(currencyMonthly, montList, currCode, toCurrCode);
-
-                CurrencyRate currencyRate = new CurrencyRate()
-                {
-                    ToCurrencyCode = i.RealtimeCurrencyRate.ToCurrencyCode,
-                    BidPrice = i.RealtimeCurrencyRate.BidPrice,
-                    AskPrice = i.RealtimeCurrencyRate.AskPrice,
-                    LastRefreshed = i.RealtimeCurrencyRate.LastRefreshed
-                };
+                List<CurrencyMonthly> currencyMonthly = 
+                        MigrateMonthly(montList, currCode, toCurrCode);
 
                 Currency currency = new Currency()
                 {
-                    CurrencyName = i.RealtimeCurrencyRate.CurrencyName,
-                    CurrencyCode = i.RealtimeCurrencyRate.CurrencyCode,
-                    CurrencyRate = currencyRate,
+                    BidPrice = i.RealtimeCurrencyRate.BidPrice,
+                    AskPrice = i.RealtimeCurrencyRate.AskPrice,
+                    LastRefreshed = i.RealtimeCurrencyRate.LastRefreshed,
+                    ToCurrencyCode = i.RealtimeCurrencyRate.ToCurrencyCode,
+                    FromCurrencyCode = i.RealtimeCurrencyRate.FromCurrencyCode,
                     CurrencyMonthly = currencyMonthly
                 };
-
                 context.Currencies.AddRange(currency);
                 context.SaveChanges();
             }
         }
 
-        static CurrencyMonthly MigrateMonthly(CurrencyMonthly currencyMonthly, List<RealtimeMonthlyCurrencyRate> montList, string currCode, string toCurrCode)
+        static List<CurrencyMonthly> MigrateMonthly(List<RealtimeMonthlyCurrencyRate> montList, string currCode, string toCurrCode)
         {
-            List<Monthly> monthlies;
+            List<CurrencyMonthly> currencyMonthlies = new List<CurrencyMonthly>();
 
             foreach (var i in montList)
             {
@@ -76,31 +69,22 @@ namespace Persistence.Seeding
                     continue;
                 else
                 {
-                    monthlies = new List<Monthly>();
-
-                    currencyMonthly = new CurrencyMonthly()
-                    {
-                        LastRefreshed = i.MonthlyMetaData.LastRefreshed
-                    };
-
                     foreach (var z in i.CurrencySeries)
                     {
-                        Monthly item = new Monthly()
+                        CurrencyMonthly currencyMonthly = new CurrencyMonthly()
                         {
                             Published = z.Refreshed,
                             Open = z.Open,
                             High = z.High,
                             Low = z.Low,
-                            Close = z.Close,
-                            CurrencyMonthly = currencyMonthly
+                            Close = z.Close
                         };
-
-                        monthlies.Add(item);
+                        
+                        currencyMonthlies.Add(currencyMonthly);
                     }
-                    currencyMonthly.Monthly = monthlies;
                 }
             }
-            return currencyMonthly;
+            return currencyMonthlies;
         }
     }
 }
