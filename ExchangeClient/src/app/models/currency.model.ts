@@ -1,4 +1,4 @@
-export interface Currency {
+export class Currency {
   id: number;
   bidPrice: number;
   askPrice: number;

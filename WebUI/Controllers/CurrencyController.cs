@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using Domain.Entities;
 using Persistence;
 using Newtonsoft.Json;
@@ -22,9 +23,9 @@ namespace WebUI.Controllers
         public CurrencyController(CurrencyDbContext context) => _context = context;
 
         [HttpGet]
-        public string Currency()
+        public ICollection<Currency> Currency()
         {
-           return "Hello world";
+            return _context.Currencies.ToArray();
         }
         
         [HttpGet("{id}")]

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +28,7 @@ namespace ExchangeRate
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddSingleton<CurrencyDbContext>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddControllersWithViews();
@@ -41,7 +43,8 @@ namespace ExchangeRate
             }
 
             CurrencySeeding.Ensure(app);
-            
+
+            app.UseCors(options => options.WithOrigins("http://localhost:4200/").AllowAnyOrigin());
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

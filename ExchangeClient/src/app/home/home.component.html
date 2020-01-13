@@ -1,1 +1,12 @@
-<p>home works!</p>
+<div>
+  <div *ngFor="let currency of currency" class="">
+    <ul>
+      <li>{{currency.id}}</li>
+      <li>{{currency.bidPrice}}</li>
+      <li>{{currency.askPrice}}</li>
+      <li>{{currency.lastRefreshed}}</li>
+      <li>{{currency.toCurrencyCode}}</li>
+      <li>{{currency.fromCurrencyCode}}</li>
+    </ul>
+  </div>
+</div>
