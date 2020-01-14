@@ -1,0 +1,31 @@
+#mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+tr {
+  background-color: #fff;
+  display: flex;
+  border-radius: 8px;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  height: 39px;
+  width: 1039px;
+  border-radius: 24px;
+  z-index: 3;
+  height: 44px;
+  margin: 8px auto;
+}
+
+th {
+  width: 200px;
+  padding: 9px;
+  margin: 0;
+}
+
+td {
+  width: 320px;
+  padding: 10px;
+  margin: 0;
+}

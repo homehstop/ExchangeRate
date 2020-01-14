@@ -1,12 +1,20 @@
-<div>
-  <div *ngFor="let currency of currency" class="">
-    <ul>
-      <li>{{currency.id}}</li>
-      <li>{{currency.bidPrice}}</li>
-      <li>{{currency.askPrice}}</li>
-      <li>{{currency.lastRefreshed}}</li>
-      <li>{{currency.toCurrencyCode}}</li>
-      <li>{{currency.fromCurrencyCode}}</li>
-    </ul>
+<main>
+  <div id="mainContainer" class="text-center container" style="overflow-x: auto;">
+    <table style="text-align: center; content: box;">
+      <tr>
+        <th>Convert from</th>
+        <th>Convert to</th>
+        <th>Bind price</th>
+        <th>Ask price</th>
+        <th>Last refreshed</th>
+      </tr>
+      <tr *ngFor="let currency of currency">
+        <td>{{currency.fromCurrencyCode}}</td>
+        <td>{{currency.toCurrencyCode}}</td>
+        <td>{{currency.bidPrice}}</td>
+        <td>{{currency.askPrice}}</td>
+        <td>{{currency.lastRefreshed}}</td>
+      </tr>
+    </table>
   </div>
-</div>
+</main>
