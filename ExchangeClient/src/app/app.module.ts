@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrencyService } from './services/currency.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HeaderComponent } from './header/header.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule
   ],
   providers: [CurrencyService],
   bootstrap: [AppComponent]
