@@ -1,4 +1,3 @@
-import 'hammerjs';
 import { Component, OnInit } from '@angular/core';
 import { CurrencyService } from '../services/currency.service';
 import { Currency } from '../models/currency.model';
@@ -19,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   tabChangeEvent() {
-    console.log('tab changed');
+    console.log('change is active');
   }
 
   ngOnInit() {

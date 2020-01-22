@@ -11,10 +11,11 @@ using Persistence;
 using Newtonsoft.Json;
 using System.IO;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebUI.Controllers
 {
-    [Route("/")]
+    [Route("/currency")]
     [ApiController]
     public class CurrencyController : Controller
     {
@@ -23,15 +24,15 @@ namespace WebUI.Controllers
         public CurrencyController(CurrencyDbContext context) => _context = context;
 
         [HttpGet]
-        public ICollection<Currency> Currency()
+        public async Task<Currency[]> GetCurrency()
         {
-            return _context.Currencies.ToArray();
+            return await _context.Currencies.ToArrayAsync();
         }
         
         [HttpGet("{id}")]
-        public Currency CurrencyById(int id)
+        public async Task<Currency> GetCurrencyById(int id)
         {
-            return _context.Currencies.Find(id);
+            return await _context.Currencies.FindAsync(id);
         }
     }
 }

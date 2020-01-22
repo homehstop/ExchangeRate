@@ -1,19 +1,24 @@
 <main>
-  <div style="overflow-x: auto;">
-    <mat-tab-group (selectedTabChange)="tabChangeEvent()">
-      <mat-tab *ngFor="let currency of currency">
-        <ng-template mat-tab-label="currency.toCurrencyCode">
-          <h4>{{currency.fromCurrencyCode}}</h4>
-          <h4 style="margin-left: 10px;">{{currency.toCurrencyCode}}</h4>
-        </ng-template>
-        <ng-template matTabContent>
-          <h4>{{currency.fromCurrencyCode}}</h4>
-          <h4>{{currency.toCurrencyCode}}</h4>
-          <h4>{{currency.bidPrice}}</h4>
-          <h4>{{currency.askPrice}}</h4>
-          <h4>{{currency.lastRefreshed}}</h4>
-        </ng-template>
-      </mat-tab>
-    </mat-tab-group>
+  <div class="container text-center">
+    <table style="text-align: center; content: box;">
+      <tr class="mainColumns">
+        <th>From Currency</th>
+        <th>To Currency</th>
+        <th>Ask Price</th>
+        <th>Bid Price</th>
+        <th>Refreshed</th>
+      </tr>
+      <tr class="mainColumns" *ngFor="let currency of currency">
+        <a routerLink="chart/{{currency.id}}">
+          <div>
+            <td>{{currency.fromCurrencyCode}}</td>
+            <td>{{currency.toCurrencyCode}}</td>
+            <td>{{currency.askPrice}}</td>
+            <td>{{currency.bidPrice}}</td>
+            <td>{{currency.lastRefreshed}}</td>
+          </div>
+        </a>
+      </tr>
+    </table>
   </div>
 </main>

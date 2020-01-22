@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HeaderComponent } from './header/header.component';
+import { MonthlyService } from './services/monthly.service';
+import { ChartModule } from './chart/chart.module';
+
+
 
 @NgModule({
   declarations: [
@@ -23,9 +27,13 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    ChartModule
   ],
-  providers: [CurrencyService],
+  providers: [
+    CurrencyService,
+    MonthlyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

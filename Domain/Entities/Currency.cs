@@ -13,7 +13,7 @@ namespace Domain.Entities
         public string LastRefreshed { get; set; }
         public string ToCurrencyCode { get; set; }
         public string FromCurrencyCode { get; set; }
-        
+
         [JsonIgnore]
         public List<CurrencyMonthly> CurrencyMonthly { get; set; }
     }

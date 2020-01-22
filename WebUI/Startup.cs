@@ -13,12 +13,15 @@ using Microsoft.Extensions.Hosting;
 using MediatR;
 using Persistence;
 using Persistence.Seeding;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExchangeRate
 {
     public class Startup
     {
+        const string CONNECTION = "Filename=ExchangeDB";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,8 +31,12 @@ namespace ExchangeRate
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CurrencyDbContext>(options => {
+                options.UseSqlite(CONNECTION);
+            });
+
+            services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
-            services.AddSingleton<CurrencyDbContext>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddControllersWithViews();
         }
@@ -48,7 +55,7 @@ namespace ExchangeRate
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
