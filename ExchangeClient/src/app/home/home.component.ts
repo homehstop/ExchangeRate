@@ -13,15 +13,11 @@ export class HomeComponent implements OnInit {
 
   currency: Currency;
 
-  createCurrency() {
-    this.currencyService.get('').subscribe(x => this.currency = x);
-  }
-
   tabChangeEvent() {
     console.log('change is active');
   }
 
   ngOnInit() {
-    this.createCurrency();
+    this.currencyService.get('').subscribe(x => this.currency = x);
   }
 }
