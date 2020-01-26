@@ -12,6 +12,8 @@ import {
   ApexTooltip,
   ChartComponent
 } from 'ng-apexcharts';
+import { CurrencyService } from '../services/currency.service';
+import { Currency } from '../models/currency.model';
 
 export interface ChartOption {
   series: ApexAxisChartSeries;
@@ -25,16 +27,20 @@ export interface ChartOption {
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.css'],
+  styleUrls: ['./chart.component.css']
 })
 export class ExChartComponent implements OnInit {
   @ViewChild('chart', {static: false}) chart: ChartComponent;
   public chartOptions: Partial<ChartOption>;
   public monthly: Array<Monthly>;
   public currencyId: number;
+  public currency = new Currency();
 
-  constructor(private monthlyService: MonthlyService, private route: ActivatedRoute) {
-  }
+  constructor(
+    private monthlyService: MonthlyService,
+    private route: ActivatedRoute,
+    private currencyService: CurrencyService
+    ) { }
 
   private drawChart() {
 
@@ -49,8 +55,6 @@ export class ExChartComponent implements OnInit {
       });
     }
 
-    console.log(dataSeries);
-
     this.chartOptions = {
       series: [
         {
@@ -61,10 +65,6 @@ export class ExChartComponent implements OnInit {
       chart: {
         height: 350,
         type: 'candlestick'
-      },
-      title: {
-        text: 'Chart - Category X-axis',
-        align: 'left'
       },
       tooltip: {
         enabled: true
@@ -90,6 +90,9 @@ export class ExChartComponent implements OnInit {
     this.monthlyService.get(this.currencyId).subscribe((data: Array<Monthly>) => {
       this.monthly = data.slice();
       this.drawChart();
+    });
+    this.currencyService.get(this.currencyId).subscribe((currency: Currency) => {
+      this.currency = currency;
     });
   }
 }

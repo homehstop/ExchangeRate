@@ -1,11 +1,21 @@
-<div id="chart">
-    <apx-chart
-      [series]="chartOptions.series"
-      [chart]="chartOptions.chart"
-      [xaxis]="chartOptions.xaxis"
-      [yaxis]="chartOptions.yaxis"
-      [title]="chartOptions.title"
-      [tooltip]="chartOptions.tooltip"
-    ></apx-chart>
+<div id="chart" class="container" style="margin-top: 20px;">
+  <h5 style="margin-left: 10px;"> 
+    From {{currency.fromCurrencyCode}} to {{currency.toCurrencyCode}}
+  </h5> 
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [yaxis]="chartOptions.yaxis"
+    [title]="chartOptions.title"
+    [tooltip]="chartOptions.tooltip"
+  ></apx-chart>
+
+  <div id="currencyInfo">
+    <span>Bid Price: {{currency.askPrice}}</span>
+    <span>Ask Price: {{currency.bidPrice}}</span>
+    <span>Refreshed: {{currency.lastRefreshed}}</span>
+  </div>
+
   </div>
   
