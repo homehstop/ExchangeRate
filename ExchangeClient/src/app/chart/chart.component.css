@@ -1,5 +1,6 @@
-#currencyInfo {
+.currencyInfo {
     display: flex;
     flex-direction: column;
     padding-top: 40px;
+    color: #7a7a7a;
 }

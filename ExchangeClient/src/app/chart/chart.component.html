@@ -1,7 +1,7 @@
 <div id="chart" class="container" style="margin-top: 20px;">
-  <h5 style="margin-left: 10px;"> 
+  <h5 class="currencyInfo" style="margin-left: 10px;">
     From {{currency.fromCurrencyCode}} to {{currency.toCurrencyCode}}
-  </h5> 
+  </h5>
   <apx-chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
@@ -11,11 +11,10 @@
     [tooltip]="chartOptions.tooltip"
   ></apx-chart>
 
-  <div id="currencyInfo">
+  <div class="currencyInfo">
     <span>Bid Price: {{currency.askPrice}}</span>
     <span>Ask Price: {{currency.bidPrice}}</span>
     <span>Refreshed: {{currency.lastRefreshed}}</span>
   </div>
 
   </div>
-  
